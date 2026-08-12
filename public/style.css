@@ -1,0 +1,333 @@
+ul{
+    color: red;
+}* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+
+  background: #f5f7fb;
+  color: #172033;
+}
+
+.container {
+  width: min(900px, 92%);
+  margin: 40px auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 32px;
+}
+
+.header p {
+  color: #7b8496;
+  margin-top: 5px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e1e5ec;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border-color: #6366f1;
+}
+
+button {
+  border: none;
+  background: #6366f1;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.section-title {
+  margin: 30px 0 15px;
+}
+
+.customers {
+  display: grid;
+  gap: 12px;
+}
+
+.customer-card {
+  background: white;
+  padding: 18px;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  text-decoration: none;
+  color: inherit;
+
+  transition: 0.2s;
+}
+
+.customer-card:hover {
+  transform: translateY(-2px);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  background: #6366f1;
+  color: white;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.customer-info {
+  flex: 1;
+}
+
+.customer-info h3 {
+  margin-bottom: 5px;
+}
+
+.customer-info p {
+  color: #858da0;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 25px;
+  color: #9ca3af;
+}
+
+.empty {
+  background: white;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 18px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.empty p {
+  color: #8b93a5;
+  margin-top: 8px;
+}
+
+/* Customer page */
+
+.topbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.back {
+  text-decoration: none;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.topbar p {
+  color: #858da0;
+  margin-top: 4px;
+}
+
+.balance-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.balance-card span {
+  color: #7b8496;
+}
+
+.balance-card strong {
+  font-size: 35px;
+}
+
+.balance-card small {
+  color: #7b8496;
+}
+
+.debt {
+  color: #ef4444;
+}
+
+.paid {
+  color: #16a34a;
+}
+
+/* Transaction type */
+
+.type-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.type-option {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.type-option input {
+  width: auto;
+  margin: 0 5px 0 0;
+}
+
+.type-option:has(input:checked) {
+  border-color: #6366f1;
+}
+
+/* Transactions */
+
+.transactions {
+  display: grid;
+  gap: 12px;
+}
+
+.transaction {
+  background: white;
+  padding: 18px;
+
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.transaction-icon {
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.icon-red {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.icon-green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.transaction-info {
+  flex: 1;
+}
+
+.transaction-info p {
+  color: #8b93a5;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.transaction-right {
+  text-align: right;
+}
+
+.transaction-right strong {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.delete-btn {
+  background: transparent;
+  color: #ef4444;
+  padding: 0;
+  font-size: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px auto;
+  }
+
+  .header h1 {
+    font-size: 26px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .transaction {
+    padding: 14px;
+  }
+
+  .transaction-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .transaction-right strong {
+    font-size: 14px;
+  }
+}

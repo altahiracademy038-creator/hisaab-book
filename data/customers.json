@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1786467111486",
+    "name": "haji sahib",
+    "phone": "0333232333",
+    "entries": []
+  },
+  {
+    "id": "1786467510118",
+    "name": "uneeb",
+    "phone": "0344556687",
+    "entries": [
+      {
+        "id": "1786469195522",
+        "type": "jama",
+        "amount": 4000,
+        "description": "bhag gaya",
+        "date": "8/11/2026"
+      }
+    ]
+  }
+]

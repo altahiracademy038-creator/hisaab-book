@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+
+   <meta
+     name="viewport"
+     content="width=device-width, initial-scale=1.0"
+   >
+
+   <title>Hisab Book</title>
+
+   <link rel="stylesheet" href="/style.css">
+ </head>
+
+ <body>
+
+   <div class="container">
+
+     <header class="header">
+       <div>
+         <h1>📒 Hisab Book</h1>
+         <p>Manage your customer accounts</p>
+       </div>
+     </header>
+
+     <!-- Add Customer -->
+
+     <section class="card">
+
+       <h2>Add Customer</h2>
+
+       <form action="/customers" method="POST">
+
+         <div class="form-grid">
+
+           <input
+             type="text"
+             name="name"
+             placeholder="Customer name"
+             required
+           >
+
+           <input
+             type="tel"
+             name="phone"
+             placeholder="Phone number"
+           >
+
+         </div>
+
+         <button type="submit">
+           + Add Customer
+         </button>
+
+       </form>
+
+     </section>
+
+     <!-- Customers -->
+
+     <section>
+
+       <h2 class="section-title">
+         Customers
+       </h2>
+
+       <% if (customers.length === 0) { %>
+
+         <div class="empty">
+           <div class="empty-icon">📒</div>
+
+           <h3>No customers yet</h3>
+
+           <p>
+             Add your first customer to start keeping hisab.
+           </p>
+         </div>
+
+       <% } %>
+
+       <div class="customers">
+
+         <% customers.forEach(customer => { %>
+
+           <a
+             href="/customers/<%= customer.id %>"
+             class="customer-card"
+           >
+
+             <div class="avatar">
+               <%= customer.name.charAt(0).toUpperCase() %>
+             </div>
+
+             <div class="customer-info">
+
+               <h3>
+                 <%= customer.name %>
+               </h3>
+
+               <p>
+                 <%= customer.phone || "No phone number" %>
+               </p>
+
+             </div>
+
+             <div class="arrow">
+               →
+             </div>
+
+           </a>
+
+         <% }) %>
+
+       </div>
+
+     </section>
+
+   </div>
+
+ </body>
+ </html>
+
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+
