@@ -1,59 +1,6 @@
-// import express from "express"
-// import fs from "fs"
-// import { fileURLToPath } from "url";
-// import path from "path"
-
-// const app = express()
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-// const dataFile = path.join(__dirname, "data", "customers.json");
-
-// app.set("view engine", "ejs")
-
-// app.use(express.static(path.join(__dirname, "public")))
-
-// app.get("/", function(req, res) {
-//     fs.readdir("./files", (err, data) => {
-//         res.render("home",{ files: data });
-//     });
-// });
-
-// app.get("/create",function(req,res){
-//   let date = new Date()
-//   let today_date = String(date.getDate()).padStart(2,0)
-//   let month = String(date.getMonth()).padStart(2,0)
-//   let year = date.getFullYear()
-
-//   console.log(`${today_date}-${month}-${year}`);
-
-//   fs.writeFile(`./files/${today_date}-${month}-${year}.txt`,"hello world",function(err){console.log(err);
-//   })
-  
-// })
-
-// app.get("/delete/:id",function(req,res){
-//     fs.unlink(`./files/${req.params.id}`,function(err){
-//         if (err) {
-//             res.send("err")
-            
-//         }else{
-//             res.render("delete")
-//         }
-// })
-// })
-
-// app.listen(3000,function(){console.log("server is running")})
-
-
-
-
 import express from "express"
-// const express = require("express");
 import fs from "fs"
-// const fs = require("fs"
 import path from "path"
-// const path = require("path");
 import { fileURLToPath } from "url";
 
 const app = express();
@@ -198,6 +145,30 @@ app.post("/customers/:customerId/entries/:entryId/delete", (req, res) => {
 
   res.redirect(`/customers/${customer.id}`);
 });
+
+// -------------------------
+// Delete User
+// -------------------------
+
+app.post("/customer/:id",function(req,res){
+  let data = readData()
+
+  let user = req.params.id
+
+  let d_user =  data.find(function(data_2){
+   return data_2.id === user
+  } )
+  console.log(d_user);
+  
+  let updated_user = data.filter(function(data_3){
+    return data_3.id !== d_user.id
+  })
+ console.log(updated_user);
+ writeData(updated_user)
+
+ res.redirect("/")
+
+})
 
 app.listen(PORT, () => {
   console.log(`Server running: http://localhost:${PORT}`);
