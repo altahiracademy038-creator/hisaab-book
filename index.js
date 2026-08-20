@@ -2,6 +2,7 @@ import express from "express"
 import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url";
+import session from "express-session";
 
 const app = express();
 
@@ -12,6 +13,7 @@ const dataFile = path.join(__dirname, "data", "customers.json");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(express.static("public"));
 
 app.set("view engine", "ejs");
@@ -49,6 +51,125 @@ app.get("/", (req, res) => {
 // -------------------------
 // Add Customer
 // -------------------------
+
+app.use(
+  session({
+    secret: "my-secret-key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.get("/signup", function(req, res) {
+
+    res.render("signup");
+
+});
+
+
+// Signup form submit
+app.post("/signup", function(req, res) {
+
+    const { name, email, password } = req.body;
+
+    let users = readData();
+
+    // Check email already exists
+    let existingUser = users.find(function(user) {
+
+        return user.email === email;
+
+    });
+
+
+    if (existingUser) {
+
+        res.redirect("/login")
+
+    }
+
+
+    // Create new user
+    let newUser = {
+
+        id: Date.now().toString(),
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    // Add user
+    users.push(newUser);
+
+
+    // Save users
+    writeData(users);
+
+
+    res.redirect("/")
+
+});
+
+
+
+// Login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// Login form submit
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  let users = readData();
+  // Demo user
+  const user = users.find(function(entity){
+    return entity.email == email
+  })
+ 
+  if (!user) {
+    res.redirect("/signup")
+  }
+
+  if (email === user.email && password == user.password) {
+    // User login ho gaya
+    req.session.user = {
+      email: email,
+    };
+
+    res.redirect("/");
+  } else {
+    console.log(email,password);
+    
+    res.send("Invalid email or password");
+  }
+});
+
+// Dashboard
+app.get("/dashboard", (req, res) => {
+  // Check login
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+
+  res.send(`Welcome ${req.session.user.email}`);
+});
+
+// Logout
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.send("Logout error");
+    }
+
+    res.redirect("/login");
+  });
+});
 
 app.post("/customers", (req, res) => {
   const customers = readData();
